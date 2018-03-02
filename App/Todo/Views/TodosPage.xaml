@@ -3,17 +3,17 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="Todo.Views.TodosPage"
     xmlns:behaviors="clr-namespace:Todo.Behaviors"
+    xmlns:converters="clr-namespace:Todo.Converters"
     Title="Todo's">
 
-    <ContentPage.Icon>
-        <OnPlatform x:TypeArguments="FileImageSource">
-            <On Platform="Android" Value="icon.png" /><!-- Need iOS too -->
-            <On Platform="UWP" Value="Images/icon.png" />
-        </OnPlatform>
-    </ContentPage.Icon>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:IsDoneToImageSourceConverter x:Key="isDoneToImageSource" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand">
-        <SearchBar Style="{StaticResource searchBarStyle}" Placeholder="Search..." x:Name="Searcher" SearchCommand="{Binding SearchCommand}" SearchCommandParameter="{Binding Text, Source={x:Reference Searcher}}">
+        <SearchBar Placeholder="Search..." x:Name="Searcher" SearchCommand="{Binding SearchCommand}" SearchCommandParameter="{Binding Text, Source={x:Reference Searcher}}">
             <SearchBar.Behaviors>
                 <behaviors:TextChangedBehavior />
             </SearchBar.Behaviors>
@@ -45,13 +45,7 @@
                                 </OnPlatform>
                             </StackLayout.Padding>
 
-                            <Image Aspect="AspectFit" IsVisible="{Binding IsDone}">
-                                <Image.Source>
-                                    <OnPlatform x:TypeArguments="ImageSource">
-                                        <On Platform="UWP" Value="Images/ic_check_mark.png" />
-                                        <On Platform="iOS,Android" Value="ic_check_mark.png" />
-                                    </OnPlatform>
-                                </Image.Source>
+                            <Image Aspect="AspectFit" Source="{Binding IsDone, Converter={StaticResource isDoneToImageSource}}">
 
                                 <Image.WidthRequest>
                                     <OnPlatform x:TypeArguments="x:Double">

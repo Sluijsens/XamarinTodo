@@ -29,8 +29,12 @@ namespace Todo.Services
         public static async Task AddOrUpdate(Models.Todo todo) {
             if (!Todos.Contains(todo))
             {
-                AllTodos.Add(todo);
-                await Save();
+                // Do not add the todo when the text is empty.
+                // TODO: Return message to user about this.
+                if (!String.IsNullOrWhiteSpace(todo.Text)) {
+                    AllTodos.Add(todo);
+                    await Save();
+                }
 
                 Search(_searchTerm);
             }

@@ -7,11 +7,14 @@
     <StackLayout Orientation="Vertical">
         
         <Label>Text:</Label>
-        <Entry Text="{Binding Todo.Text}" />
+        <Entry Style="{StaticResource entryStyle}" Text="{Binding Todo.Text}" />
 
-        <Label>Is Done?</Label>
-        <Switch IsToggled="{Binding Todo.IsDone}" />
-        
+        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+            <Label HorizontalOptions="StartAndExpand">Done</Label>
+            <Switch HorizontalOptions="End"
+                    IsToggled="{Binding Todo.IsDone}" />
+        </StackLayout>
+
     </StackLayout>
 
     <ContentPage.ToolbarItems>

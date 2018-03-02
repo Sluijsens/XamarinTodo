@@ -5,10 +5,24 @@
         
         <ResourceDictionary>
 
-            <Style x:Key="searchBarStyle"  TargetType="SearchBar">
-                <Setter Property="TextColor" Value="#FF5252" />
-            </Style>
+            <Color x:Key="navBarBackgroundColor">#3498db</Color>
+            <Color x:Key="navBarTextColor">white</Color>
+            <Color x:Key="accentColor">#795548</Color>
             
+            <Style TargetType="SearchBar">
+                <Setter Property="TextColor" Value="{StaticResource accentColor}" />
+            </Style>
+            <Style x:Key="entryStyle" TargetType="Entry">
+                <Setter Property="TextColor" Value="{StaticResource accentColor}" />
+            </Style>
+
+            <!--
+            Inheritance ook mogelijk met bijvoorbeeld:
+            <Style BasedOn="entryStyle">
+                <Setter Property="..." Value="..." />
+            </Style>
+            -->
+
         </ResourceDictionary>
         
 	</Application.Resources>

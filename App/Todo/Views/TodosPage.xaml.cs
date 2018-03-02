@@ -24,7 +24,7 @@ namespace Todo.Views
 
             var deleteItem = await DisplayAlert("Remove", $"Remove the todo {todo.Text}", "OK", "Never mind");
             if(deleteItem)
-                TodoService.Remove(todo);
+                await TodoService.Remove(todo);
         }
 
         private async void Edit_Clicked(object sender, EventArgs e)
@@ -37,13 +37,13 @@ namespace Todo.Views
 
         private async void ItemTapped(object sender, ItemTappedEventArgs e)
         {
+            TodosListView.SelectedItem = null;
+
             if (e.Item is Models.Todo todo)
             {
                 todo.IsDone = !todo.IsDone;
                 await TodoService.Save();
             }
-
-            TodosListView.SelectedItem = null;
         }
     }
 }

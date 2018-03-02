@@ -18,8 +18,9 @@ namespace Todo
 
             MainPage = new NavigationPage(new TodosPage())
             {
-                BarBackgroundColor = Color.FromHex("#3498db"),
-                BarTextColor = Color.White
+                // Volgende kleuren komen uit de ResourceDictionary van App.xaml
+                BarBackgroundColor = (Color) Current.Resources["navBarBackgroundColor"],
+                BarTextColor = (Color) Current.Resources["navBarTextColor"]
             };
         }
 

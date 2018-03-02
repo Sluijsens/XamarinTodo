@@ -43,6 +43,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Behaviors\TextChangedBehavior.cs" />
+    <Compile Include="Converters\IsDoneToImageSourceConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\TodosPage.xaml.cs">
       <DependentUpon>TodosPage.xaml</DependentUpon>
