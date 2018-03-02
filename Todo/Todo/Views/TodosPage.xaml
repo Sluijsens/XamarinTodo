@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Todo.Views.TodosPage"
+    xmlns:behaviors="clr-namespace:Todo.Behaviors"
+    Title="Todo's">
+
+    <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand">
+        <SearchBar Placeholder="Search..." x:Name="Searcher" SearchCommand="{Binding SearchCommand}" SearchCommandParameter="{Binding Text, Source={x:Reference Searcher}}">
+            <SearchBar.Behaviors>
+                <behaviors:TextChangedBehavior />
+            </SearchBar.Behaviors>
+        </SearchBar>
+
+        <ListView x:Name="TodosListView" ItemTapped="ItemTapped" ItemsSource="{Binding Todos}" SeparatorVisibility="None" RowHeight="48">
+        
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+
+                        <ViewCell.ContextActions>
+                            <MenuItem Clicked="Edit_Clicked"
+                                      CommandParameter="{Binding .}"
+                                      Text="Edit" />
+                        
+                            <MenuItem Clicked="Remove_Clicked"
+                                      CommandParameter="{Binding .}"
+                                      Text="Remove"
+                                      IsDestructive="True" />
+                        </ViewCell.ContextActions>
+                    
+                        <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+
+                            <StackLayout.Padding>
+                                <OnPlatform x:TypeArguments="Thickness">
+                                    <On Platform="iOS,UWP" Value="8" />
+                                    <On Platform="Android" Value="0, 0, 8, 0" />
+                                </OnPlatform>
+                            </StackLayout.Padding>
+
+                            <Image Aspect="AspectFit" IsVisible="{Binding IsDone}">
+                                <Image.Source>
+                                    <OnPlatform x:TypeArguments="ImageSource">
+                                        <On Platform="UWP" Value="Images/ic_check_mark.png" />
+                                        <On Platform="iOS,Android" Value="ic_check_mark.png" />
+                                    </OnPlatform>
+                                </Image.Source>
+
+                                <Image.WidthRequest>
+                                    <OnPlatform x:TypeArguments="x:Double">
+                                        <On Platform="iOS,UWP" Value="32" />
+                                        <On Platform="Android" Value="48" />
+                                    </OnPlatform>
+                                </Image.WidthRequest>
+                            </Image>
+
+                            <Label Text="{Binding Text}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" Style="{StaticResource labelStyle}" />
+                        
+                        </StackLayout>
+                    
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        
+        </ListView>
+    </StackLayout>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Command="{Binding AddTodoCommand}" />
+    </ContentPage.ToolbarItems>
+    
+</ContentPage>
