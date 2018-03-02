@@ -1,8 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using PCLStorage;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Todo.Services
 {
@@ -12,25 +15,23 @@ namespace Todo.Services
         public static IList<Models.Todo> AllTodos = new List<Models.Todo>();
         private static string _searchTerm;
 
-        public static void Load()
+        public static async Task Load()
         {
-            AllTodos.Add(new Models.Todo()
-            {
-                Text = "Dit is een Todo",
-                IsDone = true
-            });
-            AllTodos.Add(new Models.Todo()
-            {
-                Text = "Copy of Dit is een Todo",
-                IsDone = true
-            });
+            var file = await OpenFile();
+            var json = await file.ReadAllTextAsync();
+
+            if(!String.IsNullOrWhiteSpace(json))
+                AllTodos = JsonConvert.DeserializeObject<IList<Models.Todo>>(json);
+
             Search(String.Empty);
         }
 
-        public static void Save(Models.Todo todo) {
+        public static async Task AddOrUpdate(Models.Todo todo) {
             if (!Todos.Contains(todo))
             {
                 AllTodos.Add(todo);
+                await Save();
+
                 Search(_searchTerm);
             }
         }
@@ -50,9 +51,29 @@ namespace Todo.Services
             else
                 foundTodos = AllTodos;
 
-            Todos.Clear();
-            foreach (var todo in foundTodos)
-                Todos.Add(todo);
+            if (!foundTodos.SequenceEqual(Todos))
+            {
+                Todos.Clear();
+                foreach (var todo in foundTodos)
+                    Todos.Add(todo);
+            }
+        }
+
+        /* Helper Methods */
+        private static async Task<IFile> OpenFile()
+        {
+            IFolder rootFolder = FileSystem.Current.LocalStorage;
+            IFolder folder = await rootFolder.CreateFolderAsync("Todos", CreationCollisionOption.OpenIfExists);
+            IFile file = await folder.CreateFileAsync("todos.qwerty", CreationCollisionOption.OpenIfExists);
+
+            return file;
+        }
+        public static async Task Save()
+        {
+            var file = await OpenFile();
+
+            var json = JsonConvert.SerializeObject(AllTodos);
+            await file.WriteAllTextAsync(json);
         }
     }
 }

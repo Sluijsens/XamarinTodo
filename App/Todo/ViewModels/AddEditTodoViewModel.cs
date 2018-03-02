@@ -29,7 +29,7 @@ namespace Todo.ViewModels
         public Command AddCommand {
             get => new Command(async () =>
             {
-                TodoService.Save(_todo);
+                await TodoService.AddOrUpdate(_todo);
                 await _navigation.PopAsync();
             });
         }

@@ -42,11 +42,13 @@ namespace Todo.Views
             await Navigation.PushAsync(new AddEditTodoPage(todo));
         }
 
-        private void ItemTapped(object sender, ItemTappedEventArgs e)
+        private async void ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            var todo = e.Item as Models.Todo;
-            if (todo != null)
+            if (e.Item is Models.Todo todo)
+            {
                 todo.IsDone = !todo.IsDone;
+                await TodoService.Save();
+            }
 
             TodosListView.SelectedItem = null;
         }
