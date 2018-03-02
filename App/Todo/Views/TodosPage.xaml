@@ -6,14 +6,14 @@
     Title="Todo's">
 
     <ContentPage.Icon>
-        <OnPlatform>
-            <On Platform="Android,iOS" Value="icon.png" />
+        <OnPlatform x:TypeArguments="FileImageSource">
+            <On Platform="Android" Value="icon.png" /><!-- Need iOS too -->
             <On Platform="UWP" Value="Images/icon.png" />
         </OnPlatform>
     </ContentPage.Icon>
 
     <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand">
-        <SearchBar Placeholder="Search..." x:Name="Searcher" SearchCommand="{Binding SearchCommand}" SearchCommandParameter="{Binding Text, Source={x:Reference Searcher}}">
+        <SearchBar Style="{StaticResource searchBarStyle}" Placeholder="Search..." x:Name="Searcher" SearchCommand="{Binding SearchCommand}" SearchCommandParameter="{Binding Text, Source={x:Reference Searcher}}">
             <SearchBar.Behaviors>
                 <behaviors:TextChangedBehavior />
             </SearchBar.Behaviors>
@@ -61,7 +61,7 @@
                                 </Image.WidthRequest>
                             </Image>
 
-                            <Label Text="{Binding Text}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" Style="{StaticResource labelStyle}" />
+                            <Label Text="{Binding Text}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" />
                         
                         </StackLayout>
                     

@@ -1,4 +1,5 @@
-﻿using Todo.Services;
+﻿using System.Threading.Tasks;
+using Todo.Services;
 using Todo.Views;
 using Xamarin.Forms;
 
@@ -10,8 +11,16 @@ namespace Todo
         {
             InitializeComponent();
 
-            TodoService.Load();
-            MainPage = new NavigationPage(new TodosPage());
+            Task.Run(async () =>
+            {
+                await TodoService.Load();
+            }).Wait();
+
+            MainPage = new NavigationPage(new TodosPage())
+            {
+                BarBackgroundColor = Color.FromHex("#3498db"),
+                BarTextColor = Color.White
+            };
         }
 
         protected override void OnStart()

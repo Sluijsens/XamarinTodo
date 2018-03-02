@@ -36,9 +36,11 @@ namespace Todo.Services
             }
         }
 
-        public static void Remove(Models.Todo todo)
+        public static async Task Remove(Models.Todo todo)
         {
             AllTodos.Remove(todo);
+            await Save();
+
             Search(_searchTerm);
         }
 

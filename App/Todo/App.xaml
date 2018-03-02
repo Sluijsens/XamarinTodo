@@ -4,10 +4,9 @@
 		<!-- Application resource dictionary -->
         
         <ResourceDictionary>
-            
-            <Style x:Key="labelStyle" TargetType="Label">
-                <Setter Property="TextColor" Value="Red" />
-                <Setter Property="BackgroundColor" Value="#123456" />
+
+            <Style x:Key="searchBarStyle"  TargetType="SearchBar">
+                <Setter Property="TextColor" Value="#FF5252" />
             </Style>
             
         </ResourceDictionary>

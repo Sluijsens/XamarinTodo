@@ -17,13 +17,6 @@ namespace Todo.Views
             BindingContext = _viewModel;
         }
 
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-
-            _viewModel.Todos = TodoService.Todos;
-        }
-
         private async void Remove_Clicked(object sender, EventArgs e)
         {
             var menuItem = (MenuItem)sender;
