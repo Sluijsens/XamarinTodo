@@ -4,80 +4,44 @@
       "idiom": "universal"
     },
     {
-      "filename": "check-mark-1292787_640.png",
       "scale": "1x",
-      "idiom": "universal"
-    },
-    {
-      "filename": "check-mark-1292787_640@2x.png",
-      "scale": "2x",
-      "idiom": "universal"
-    },
-    {
-      "filename": "check-mark-1292787_640@3x.png",
-      "scale": "3x",
-      "idiom": "universal"
-    },
-    {
-      "idiom": "iphone"
-    },
-    {
-      "scale": "1x",
-      "idiom": "iphone"
+      "idiom": "universal",
+      "filename": "check-mark-1292787_640.png"
     },
     {
       "scale": "2x",
-      "idiom": "iphone"
-    },
-    {
-      "subtype": "retina4",
-      "scale": "2x",
-      "idiom": "iphone"
+      "idiom": "universal",
+      "filename": "check-mark-1292787_640@2x.png"
     },
     {
       "scale": "3x",
+      "idiom": "universal",
+      "filename": "check-mark-1292787_640@3x.png"
+    },
+    {
       "idiom": "iphone"
     },
     {
-      "idiom": "ipad"
-    },
-    {
       "scale": "1x",
-      "idiom": "ipad"
+      "idiom": "iphone"
     },
     {
       "scale": "2x",
-      "idiom": "ipad"
-    },
-    {
-      "idiom": "watch"
+      "idiom": "iphone"
     },
     {
       "scale": "2x",
-      "idiom": "watch"
+      "idiom": "iphone",
+      "subtype": "retina4"
     },
     {
-      "screenWidth": "{130,145}",
-      "scale": "2x",
-      "idiom": "watch"
-    },
-    {
-      "screenWidth": "{146,165}",
-      "scale": "2x",
-      "idiom": "watch"
-    },
-    {
-      "idiom": "mac"
-    },
-    {
-      "scale": "1x",
-      "idiom": "mac"
-    },
-    {
-      "scale": "2x",
-      "idiom": "mac"
+      "scale": "3x",
+      "idiom": "iphone"
     }
   ],
+  "properties": {
+    "template-rendering-intent": ""
+  },
   "info": {
     "version": 1,
     "author": "xcode"

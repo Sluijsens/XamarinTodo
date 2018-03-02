@@ -15,7 +15,14 @@
     </StackLayout>
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Done" Command="{Binding AddCommand}" />
+        <ToolbarItem Text="Done" Command="{Binding AddCommand}">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="iOS,Android" Value="ic_done.png" />
+                    <On Platform="UWP" Value="Images/ic_done.png" />
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
     </ContentPage.ToolbarItems>
     
 </ContentPage>

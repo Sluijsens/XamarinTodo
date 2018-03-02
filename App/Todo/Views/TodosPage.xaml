@@ -5,6 +5,13 @@
     xmlns:behaviors="clr-namespace:Todo.Behaviors"
     Title="Todo's">
 
+    <ContentPage.Icon>
+        <OnPlatform>
+            <On Platform="Android,iOS" Value="icon.png" />
+            <On Platform="UWP" Value="Images/icon.png" />
+        </OnPlatform>
+    </ContentPage.Icon>
+
     <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand">
         <SearchBar Placeholder="Search..." x:Name="Searcher" SearchCommand="{Binding SearchCommand}" SearchCommandParameter="{Binding Text, Source={x:Reference Searcher}}">
             <SearchBar.Behaviors>
@@ -66,7 +73,14 @@
     </StackLayout>
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add" Command="{Binding AddTodoCommand}" />
+        <ToolbarItem Text="Add" Command="{Binding AddTodoCommand}">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="iOS,Android" Value="ic_add.png" />
+                    <On Platform="UWP" Value="Images/ic_add.png" />
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
     </ContentPage.ToolbarItems>
     
 </ContentPage>
