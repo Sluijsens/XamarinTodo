@@ -23,7 +23,7 @@ namespace Todo.Converters
             
             if(value is bool isDone)
             {
-                if (isDone == true)
+                if (isDone == false)
                     suffix = "_gray";
             }
 
